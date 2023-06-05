@@ -1,0 +1,16 @@
+<!-- Pasek nawigacji -->
+<nav>
+    <div class="nav-left">
+        <i class="fas fa-check-double"></i> <!-- Ikona FontAwesome -->
+        <span>TestStatus</span>
+    </div>
+    <div class="welcome">Hello, {{ current_user.username }}!</div> <!-- Wykorzystujemy tutaj Flask'a do wyświetlenia nazwy użytkownika -->
+    <div class="nav-right">
+        <a href="#">Dashboard</a>
+        <a href="#">Test Cases</a>
+        <a href="#">Test Suite</a>
+        <a href="#">Sprints</a>
+        <a href="#">Tools</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>

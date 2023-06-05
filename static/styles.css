@@ -1,0 +1,286 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Login/Register */
+.form-container {
+  background-color: white;
+  border: 1px solid #00000026;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 350px;
+  margin-top: 100px;
+  box-sizing: border-box;
+}
+
+/* main container */
+.container {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding: 20px;
+  width: 95%;
+  gap: 20px;
+  border: 1px solid #00000026;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 0px;
+  height: 85%;
+}
+
+h1,
+h2 {
+  color: #333;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* tests */
+.tests {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  flex: 1;
+  list-style-type: none;
+  border-left: 1px solid #00000026;
+  padding-left: 15px;
+}
+
+.red {
+  color: palevioletred;
+}
+
+.blue {
+  color: lightblue;
+}
+
+.yellow {
+  color: palegoldenrod;
+}
+
+.green {
+  color: palegreen;
+}
+
+/* header */
+nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+  position: fixed; /* Nowa właściwość, aby nawigacja była zawsze na górze */
+  top: 0; /* Nowa właściwość, aby nawigacja była zawsze na górze */
+  left: 0; /* Nowa właściwość, aby nawigacja była zawsze na górze */
+  z-index: 10; /* Nowa właściwość, aby nawigacja była zawsze na wierzchu */
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  margin-left: 23px;
+}
+
+.nav-left i {
+  margin-right: 10px;
+}
+
+.nav-right a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-right a:hover {
+  color: rgb(0, 173, 150);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-right: 32px;
+}
+
+.welcome {
+  font-size: 1em;
+}
+/* tables */
+.st_viewport {
+  overflow: auto;
+  width: 50%;
+  margin: 0 auto; /* To center the table */
+}
+
+.st_wrap_table {
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.st_table_header {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+[data-table_id="0"] .st_table_header {
+  background-color: #e3fcec;
+  color: #000;
+}
+
+[data-table_id="1"] .st_table_header {
+  background-color: #ffd1d1;
+  color: #000;
+}
+
+[data-table_id="2"] .st_table_header {
+  background-color: #ffe58f;
+  color: #000;
+}
+
+[data-table_id="3"] .st_table_header {
+  background-color: #d6eaff;
+  color: #000;
+}
+
+.st_table_header h2 {
+  font-weight: 500;
+  font-size: 1.5em;
+  margin: 0 7px;
+  padding: 5px 0;
+}
+
+.st_table_header .st_row {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.st_row {
+  display: flex;
+  margin: 0;
+  color: #000;
+}
+
+.st_table .st_row:nth-child(even) {
+  background-color: #f5f5f5; /* Light gray for even rows */
+}
+
+.st_column {
+  padding: 5px 7px;
+  flex: 1;
+}
+
+._id {
+  flex: 0.1;
+}
+
+._name {
+  flex: 1;
+}
+
+._description {
+  flex: 1.5;
+}
+
+._date_added {
+  flex: 0.5;
+}
+
+._User {
+  flex: 0.5;
+}
+
+._actions {
+    flex: 0.4;
+}
+.test-details-container {
+  max-height: 500px;
+  overflow: auto;
+  width: 50%;
+  margin: 0 auto; /* To center the table */
+}
+
+#test-details {
+
+  overflow: hidden;
+  width: 50%;
+  padding: 0 0 0 20px;
+  margin: 0 auto;
+  border: 3px double #8080803b;
+}
+
+
+
+button {
+  outline: 0;
+  grid-gap: 8px;
+  align-items: center;
+  background: 0 0;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 15px;
+  gap: 8px;
+  justify-content: center;
+  line-height: 0.5;
+  overflow: hidden;
+  padding: 4px 4px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition: all 0.14s ease-out;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+button:hover {
+  box-shadow: none;
+  transform: translate(0px, 0px);
+  background-color: pink;
+}
+button:focus-visible {
+  outline-offset: 1px;
+}
+
+.add_button {
+    margin: 10px;
+}

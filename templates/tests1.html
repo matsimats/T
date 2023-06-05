@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tests
+{% endblock %}
+
+{% block content %}
+{% include "nav.html" %}
+<div class="container">
+    <header>
+        <h1>Welcome to the tests page!</h1>
+        
+    </header>
+
+    <main class="tests">
+        <div class="column">
+            <h2 class="red">Test Cases</h2>
+            <ul>
+                <ul>
+                    {% for test in tests %}
+                    <li>{{ test.name }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+
+        <div class="column">
+            <h2 class="blue">Failed Tests</h2>
+            <ul>
+                <ul>
+                    {% for test in tests %}
+                    <li>{{ test.name }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+
+        <div class="column">
+            <h2 class="yellow">Tests in Progress</h2>
+            <ul>
+                <ul>
+                    {% for test in tests %}
+                    <li>{{ test.name }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+
+        <div class="column">
+            <h2 class="green">Tests Passed</h2>
+            <ul>
+                <ul>
+                    {% for test in tests %}
+                    <li>{{ test.name }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <a href="/tests/add"><button>Add Test</button></a>
+    </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Test
+{% endblock %}
+
+{% block content %}
+{% include "nav.html" %}
+<div class="form-container">
+    <h1>Add Test</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('add_test') }}">
+        <label for="test_name">Test Name:</label>
+        <input type="text" id="test_name" name="test_name" required>
+        
+        <label for="scenario">Test Scenario:</label>
+        <textarea id="scenario" name="scenario" required></textarea>
+        
+        <label for="suite">Test Suite:</label>
+        <select id="suite" name="suite" required>
+            <option value="Desktop">Desktop</option>
+            <option value="Reports">Reports</option>
+            <option value="Opportunities">Opportunities</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Search">Search</option>
+        </select>
+
+        <label for="version">Version:</label>
+        <input type="text" id="version" name="version" required>
+
+        <br>
+        <button type="submit" value="Add Test">Add test</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tests
+{% endblock %}
+
+{% block content %}
+{% include "nav.html" %}
+<br>
+<br>
+<div class="add_button">
+  <a href="/tests/add">
+    <button>Add Test
+    </button>
+  </a>
+</div>
+<div class="container">
+
+  <main class="st_viewport">
+    <div class="st_wrap_table" data-table_id="0">
+      <header class="st_table_header">
+        <h2>Test Cases</h2>
+        <div class="st_row">
+          <div class="st_column _id">ID</div>
+          <div class="st_column _name">Name</div>
+          <div class="st_column _description">Description</div>
+          <div class="st_column _date_added">Date added</div>
+          <div class="st_column _User">User</div>
+          <div class="st_column _actions">Actions</div>
+        </div>
+      </header>
+      <div class="st_table">
+        {% for test in tests if test.status == 'not_set' %}
+        <div class="st_row">
+          <div class="st_column _id">{{ test.id }}</div>
+          <a href="javascript:void(0);" onclick="showTestDetails({{ test.id }})">{{ test.name }}</a>
+          <div class="st_column _description">{{ test.details }}</div>
+          <div class="st_column _date_added">{{ test.date_added }}</div>
+          <div class="st_column _User">{{ test.added_by }}</div>
+          <div class="st_column _actions">
+            <button style="color:indianred" class="set-failed"
+              onclick="setStatus('set_failed', {{ test.id }}), window.location.reload()">
+              <i class="fa-solid fa-bug"></i>
+            </button>
+            <button style="color:dodgerblue;" class="set-in-progress"
+              onclick="setStatus('set_in_progress', {{ test.id }}), window.location.reload()">
+              <i class="fa-solid fa-spinner"></i>
+            </button>
+            <button style="color:aquamarine;" class="set-passed"
+              onclick="setStatus('set_passed', {{ test.id }}), window.location.reload()">
+              <i class="fa-regular fa-circle-check"></i>
+            </button>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Analogicznie dla tabel Failed, In progress i Passed -->
+
+    <div class="st_wrap_table" data-table_id="1">
+      <header class="st_table_header">
+        <h2>Failed tests</h2>
+        <div class="st_row">
+          <div class="st_column _id">ID</div>
+          <div class="st_column _name">Name</div>
+          <div class="st_column _description">Description</div>
+          <div class="st_column _date_added">Date added</div>
+          <div class="st_column _User">User</div>
+          <div class="st_column _actions">Actions</div>
+        </div>
+      </header>
+      <div class="st_table">
+        {% for test in tests if test.status == 'failed' %}
+        <div class="st_row">
+          <div class="st_column _id">{{ test.id }}</div>
+          <div class="st_column _name">
+            <a href="javascript:void(0);" onclick="showTestDetails({{ test.id }})">{{ test.name }}</a>
+          </div>
+          <div class="st_column _description">{{ test.details }}</div>
+          <div class="st_column _date_added">{{ test.date_added }}</div>
+          <div class="st_column _User">{{ test.added_by }}</div>
+          <div class="st_column _actions">
+            <button class="clear" onclick="setStatus('not_set', {{ test.id }}), window.location.reload()"><i
+                class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            <button style="color:dodgerblue;" class="set-in-progress"
+              onclick="setStatus('set_in_progress', {{ test.id }}), window.location.reload()">
+              <i class="fa-solid fa-spinner"></i>
+            </button>
+            <button style="color:aquamarine;" class="set-passed"
+              onclick="setStatus('set_passed', {{ test.id }}), window.location.reload()">
+              <i class="fa-regular fa-circle-check"></i>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="st_wrap_table" data-table_id="2">
+      <header class="st_table_header">
+        <h2>In progress</h2>
+        <div class="st_row">
+          <div class="st_column _id">ID</div>
+          <div class="st_column _name">Name</div>
+          <div class="st_column _description">Description</div>
+          <div class="st_column _date_added">Date added</div>
+          <div class="st_column _User">User</div>
+          <div class="st_column _actions">Actions</div>
+        </div>
+      </header>
+      <div class="st_table">
+        {% for test in tests if test.status == 'in_progress' %}
+        <div class="st_row">
+          <div class="st_column _id">{{ test.id }}</div>
+          <a href="javascript:void(0);" onclick="showTestDetails({{ test.id }})">{{ test.name }}</a>
+          <div class="st_column _description">{{ test.details }}</div>
+          <div class="st_column _date_added">{{ test.date_added }}</div>
+          <div class="st_column _User">{{ test.added_by }}</div>
+          <div class="st_column _actions">
+            <button class="clear" onclick="setStatus('not_set', {{ test.id }}), window.location.reload()"><i
+                class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            <button style="color:indianred" class="set-failed"
+              onclick="setStatus('set_failed', {{ test.id }}), window.location.reload()">
+              <i class="fa-solid fa-bug"></i>
+            </button>
+            <button style="color:aquamarine;" class="set-passed"
+              onclick="setStatus('set_passed', {{ test.id }}), window.location.reload()">
+              <i class="fa-regular fa-circle-check"></i>
+            </button>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="st_wrap_table" data-table_id="3">
+      <header class="st_table_header">
+        <h2>Passed</h2>
+        <div class="st_row">
+          <div class="st_column _id">ID</div>
+          <div class="st_column _name">Name</div>
+          <div class="st_column _description">Description</div>
+          <div class="st_column _date_added">Date added</div>
+          <div class="st_column _User">User</div>
+          <div class="st_column _actions">Actions</div>
+        </div>
+      </header>
+      <div class="st_table">
+        {% for test in tests if test.status == 'passed' %}
+        <div class="st_row">
+          <div class="st_column _id">{{ test.id }}</div>
+          <div class="st_column _name">{{ test.name }}</div>
+          <div class="st_column _description">{{ test.details }}</div>
+          <div class="st_column _date_added">{{ test.date_added }}</div>
+          <div class="st_column _User">{{ test.added_by }}</div>
+          <div class="st_column _actions">
+            <button class="clear" onclick="setStatus('clear', {{ test.id }}), window.location.reload()"><i
+                class="fa-solid fa-arrow-right-to-bracket"></i></button>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+  <main id="test-details">
+
+    <h2 id="test-id-name">ID: NAME</h2>
+    <p id="test-user">By: USER</p>
+    <p id="test-date">Added on: DATE</p>
+    <p id="test-last-modified">Last Modified: DATE</p>
+    <p id="test-status">Status: STATUS</p>
+    <p id="test-suite">Test Suite: SUITE</p>
+    <p id="test-version">Version: VERSION</p>
+    <h3>Description</h3>
+    <p id="test-description">DESCRIPTION</p>
+
+
+
+
+
+  </main>
+
+
+
+
+
+  <script>
+    function setStatus(status, test_id) {
+      fetch(`/tests/${status}/${test_id}`, {
+        method: 'POST',
+      })
+        .then(response => {
+          if (!response.ok) { throw response }
+          return response.json()  //we only get here if there is no error
+        })
+        .then((json) => {
+          // We assume the server returns a JSON response with a boolean field "statusChanged"
+          if (json.statusChanged) {
+            location.reload();
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+
+
+
+    function showTestDetails(testId) {
+      fetch(`/tests/${testId}`)
+        .then(response => {
+          if (!response.ok) { throw response }
+          return response.json()  // we only get here if there is no error
+        })
+        .then((json) => {
+          // Assuming the server returns a JSON object with the test details
+          document.getElementById('test-id-name').innerText = `ID: ${json.id} NAME: ${json.name}`;
+          document.getElementById('test-user').innerText = `By: ${json.addedBy}`;
+          document.getElementById('test-date').innerText = `Added on: ${json.dateAdded}`;
+          document.getElementById('test-last-modified').innerText = `Last Modified: ${json.lastModified}`;
+          document.getElementById('test-status').innerText = `Status: ${json.status}`;
+          document.getElementById('test-suite').innerText = `Test Suite: ${json.suite}`;
+          document.getElementById('test-version').innerText = `Version: ${json.version}`;
+          document.getElementById('test-description').innerText = json.scenario;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+
+  </script>
+  {% endblock %}
